@@ -324,13 +324,15 @@ namespace Unity.VectorGraphics
             float spriteHeight = sprite.rect.height;
             float pixelsToUnits = sprite.rect.width / sprite.bounds.size.x;
 
+            float maxDim = spriteWidth > spriteHeight ? spriteWidth : spriteHeight;
+
             var uvs = sprite.uv;
             var triangles = sprite.triangles;
             var pivot = sprite.pivot;
 
             var vertices = sprite.vertices.Select(v => 
-                new Vector2((v.x * pixelsToUnits + pivot.x)/spriteWidth,
-                            (v.y * pixelsToUnits + pivot.y)/spriteHeight)
+                new Vector2((v.x * pixelsToUnits + pivot.x)/maxDim,
+                            (v.y * pixelsToUnits + pivot.y)/maxDim)
             ).ToArray();
 
             Color[] colors = null;
