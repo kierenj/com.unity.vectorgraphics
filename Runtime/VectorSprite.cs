@@ -331,8 +331,8 @@ namespace Unity.VectorGraphics
             var pivot = sprite.pivot;
 
             var vertices = sprite.vertices.Select(v => 
-                new Vector2((v.x * pixelsToUnits + pivot.x)/maxDim,
-                            (v.y * pixelsToUnits + pivot.y)/maxDim)
+                new Vector2(((v.x + pivot.x) * pixelsToUnits)/maxDim,
+                            ((v.y + pivot.y) * pixelsToUnits)/maxDim)
             ).ToArray();
 
             Color[] colors = null;
